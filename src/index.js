@@ -7,6 +7,8 @@ import {
   deleteDoc,
   doc,
   onSnapshot,
+  query,
+  where,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -22,9 +24,10 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const collectionRef = collection(db, "movies");
+const qRef = query(collectionRef, where("category", "==", "drama"));
 
 //Fetching documents
-getDocs(collectionRef)
+getDocs(qRef)
   .then((data) => {
     let movies = [];
     data.docs.forEach((document) => {
@@ -52,6 +55,7 @@ addForm.addEventListener("submit", (event) => {
   addDoc(collectionRef, {
     name: addForm.name.value,
     desciption: addForm.description.value,
+    category: addForm.category.value,
   }).then(() => {
     addForm.reset();
   });
