@@ -6,6 +6,22 @@
     <title>Firebase!</title>
   </head>
   <body>
+    <form class="add">
+      <input type="text" placeholder="Name" name="name" autocomplete="off" />
+      <input
+        type="text"
+        placeholder="Description"
+        name="description"
+        autocomplete="off"
+      />
+      <input type="submit" value="Add Movie" />
+    </form>
+
+    <form class="delete" style="margin-top: 25px">
+      <input type="text" placeholder="Movie ID" name="id" autocomplete="off" />
+      <input type="submit" value="Delete Movie" />
+    </form>
+
     <script src="bundle.js"></script>
   </body>
 </html>
