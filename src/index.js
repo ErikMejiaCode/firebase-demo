@@ -6,6 +6,7 @@ import {
   addDoc,
   deleteDoc,
   doc,
+  onSnapshot,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -34,6 +35,15 @@ getDocs(collectionRef)
   .catch((error) => {
     console.log(error);
   });
+
+//Adding snapshot
+// onSnapshot(collectionRef, (data) => {
+//   let movies = [];
+//   data.docs.forEach((document) => {
+//     movies.push({ ...document.data(), id: document.id });
+//   });
+//   console.log(movies);
+// });
 
 //Adding document to firebase db (addDoc)
 const addForm = document.querySelector(".add");
