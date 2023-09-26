@@ -32,6 +32,12 @@ const qRef = query(
   where("category", "==", "drama"),
   orderBy("createdAt")
 );
+const documentReference = doc(db, "movies", "rnJsgJ30dgz9pP96WhPC");
+
+//Fetching 1 individual document
+onSnapshot(documentReference, (document) => {
+  console.log(document.data(), document.id);
+});
 
 //Fetching documents
 getDocs(collectionRef)
