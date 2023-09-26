@@ -9,6 +9,8 @@ import {
   onSnapshot,
   query,
   where,
+  orderBy,
+  serverTimestamp,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -24,7 +26,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore();
 const collectionRef = collection(db, "movies");
-const qRef = query(collectionRef, where("category", "==", "drama"));
+const qRef = query(
+  collectionRef,
+  where("category", "==", "drama"),
+  orderBy("createdAt")
+);
 
 //Fetching documents
 getDocs(qRef)
@@ -54,8 +60,9 @@ addForm.addEventListener("submit", (event) => {
   event.preventDefault();
   addDoc(collectionRef, {
     name: addForm.name.value,
-    desciption: addForm.description.value,
     category: addForm.category.value,
+    createdAt: serverTimestamp(),
+    updatedAt: serverTimestamp(),
   }).then(() => {
     addForm.reset();
   });
